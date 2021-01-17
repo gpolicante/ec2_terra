@@ -26,6 +26,7 @@ data "template_file" "init" {
       ostype = "${var.ostype} "
       install_debian = "${var.install_debian}"
       install_redhat = "${var.install_redhat}"
+      hostname = "${var.name}"
   }
 }
 
