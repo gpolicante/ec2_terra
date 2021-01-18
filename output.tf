@@ -4,3 +4,4 @@ value = "${aws_instance.infra.*.id}"
 
 
 }
+

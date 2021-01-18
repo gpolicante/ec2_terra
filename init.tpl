@@ -1,39 +1,20 @@
-#!/bin/bash
+#cloud-config
+repo_update: true
+repo_upgrade: all
+
+apt_sources: 
+ - source: "ppa:ansible/ansible"
+
+packages:
+ - python-pip
+ - vim
+ - curl 
+ - wget 
+ - software-properties-common
+ - ansible 
 
 
-
-installansibledeb(){
-
-
-${install_debian} update &&  ${install_debian} install python-pip curl wget vim git -y && pip install ansible  
-hostnamectl set-hostname ${hostname}
-
-}
-
-installansibleredhat(){
-
-
-${install_redhat}  install epel-release -y &&  ${install_redhat} install python-pip curl wget vim git -y && pip install ansible 
- hostnamectl set-hostname ${hostname} 
-
-}
-
-
-
-
-if [ ${ostype} == "Ubuntu" ] || [ ${ostype} == "Debian" ]
- then 
-   installansibledeb 
-   
-
-elif [ ${ostype} == "amzn" ]
-then 
-
-    installansibleredhat
-    
-else 
-
-echo  "nada a declarar valor de ostype e ${ostype} "
-    exit 
-
-fi 
+runcmd:
+ - [ sh, -c, "echo batata > /tmp/batata" ]
+ - [ sh, -c, "git clone ${playbook_link} /tmp/playbookbootstrap " ]
+ - [ sh, -c, "ansible-playbook -e TOKEN=${token_bitly}  /tmp/playbookbootstrap/playbook.yaml "  ]

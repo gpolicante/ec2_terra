@@ -21,12 +21,15 @@ filter {
 }
 
 data "template_file" "init" {
+  
   template = "${file("${path.module}/init.tpl")}"
   vars = { 
       ostype = "${var.ostype} "
       install_debian = "${var.install_debian}"
       install_redhat = "${var.install_redhat}"
-      hostname = "${var.name}"
+      playbook_link = "${var.playbook_link}"
+      token_bitly = "${var.token_bitly}"
+      
   }
 }
 

@@ -27,4 +27,14 @@ resource "aws_instance" "infra" {
 
     }
 
+# provisioner "remote-exec" { 
+#     inline = [
+#         "echo ${var.name[count.index]}   > /tmp/batata  "
+
+
+#     ]
+    
+# }
+
+
 }

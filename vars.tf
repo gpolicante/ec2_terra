@@ -68,12 +68,22 @@ variable "install_debian" {
  type   = string
  default = "apt"
 
-
 }
 
 variable "install_redhat" { 
  type   = string
  default = "yum"
 
+}
+
+variable "playbook_link" { 
+ type   = string
+ default = ""
+
+}
+
+variable "token_bitly" { 
+ type   = string
+ default = ""
 
 }
