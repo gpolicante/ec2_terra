@@ -15,16 +15,19 @@ filter {
 
 filter { 
     name = "name"
-    values =  var.ostype != "" ?  ["${format("%s*", var.ostype)}"] : ["${format("%s*", var.imagedefault)}"] 
+    values =  var.ami != "" ?  ["${format("%s*", var.ami)}"] : ["nada"] 
 
 }
+depends_on = [local.getimage]
 }
+
+
 
 data "template_file" "init" {
   
   template = "${file("${path.module}/init.tpl")}"
   vars = { 
-      ostype = "${var.ostype} "
+      
       install_debian = "${var.install_debian}"
       install_redhat = "${var.install_redhat}"
       playbook_link = "${var.playbook_link}"
@@ -32,4 +35,7 @@ data "template_file" "init" {
       
   }
 }
+
+
+
 

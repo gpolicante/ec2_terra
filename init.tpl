@@ -15,7 +15,7 @@ packages:
 
 
 runcmd:
- - [ sh, -c, "echo batata > /tmp/batata" ]
+
  - [ sh, -c, "git clone ${playbook_link} /tmp/playbookbootstrap " ]
  - [ sh, -c, "echo TOKEN_BITLY: ${token_bitly} >  /tmp/playbookbootstrap/variables.yaml   "]
  - [ sh, -c, "ansible-playbook  /tmp/playbookbootstrap/playbook.yaml "  ]

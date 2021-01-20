@@ -1,29 +1,57 @@
-variable "amiid" { 
+terraform {
+      experiments = [variable_validation]
+    }
+
+variable "ami" { 
  type   = string
  default = ""
 
-}
-variable "ostype" {
-  description = "os type to create"
-  type        = string
-  default     = ""
+validation { 
+
+  condition = ( can(regex("^ami-", var.ami)) || 
+  var.ami == "Ubuntu"  || 
+  var.ami == "amzn" || 
+  var.ami == "Windows" || 
+  var.ami == "Suse" 
+  )
+              
+  error_message = "*************The ami id is not valild pass ami-xxxx or \n SO name to list = Ubuntu, amzn, Windows, Suse************."
 }
 
-variable "all" { 
- type   = string
- default = "*"
+
 
 }
+
+
+# variable "all" { 
+#  type   = string
+#  default = "*"
+
+# }
 
 variable "sshkey" { 
  type   = string
  default = ""
+ 
+validation { 
+
+condition = ( var.sshkey != "" ) 
+error_message = "Do you need  sshkey."
+
+}
 
 }
 
 variable "size" { 
  type   = string
  default = ""
+
+validation { 
+
+condition = ( var.size != "" ) 
+error_message = "Do you need  pass size to ssd."
+
+}
 
 }
 
@@ -32,6 +60,15 @@ variable "instancetype" {
  type   = string
  default = ""
 
+validation { 
+
+condition = ( var.instancetype != "")
+
+
+
+error_message = "Instance type not null."
+
+}
 
 }
 
@@ -39,34 +76,68 @@ variable "subnet" {
  type   = list(string)
  default = [""]
 
+validation { 
+
+condition = ( var.subnet != ""   || 
+              can(regex("^subnet-", var.subnet))
+
+
+)
+
+
+error_message = "Subnet not null or not initial with subnet-."
+
+}
 
 }
 variable "name" {
-  description = "Create IAM users with these names"
+  description = "Create  users"
   type        = list(string)
   default     = [""]
+validation { 
+
+condition = ( var.name != "" )
+
+
+
+error_message = "Name parameter is name to instance not null."
+
 }
 
-variable "imagedefault" {
-  
-  type        = string
-  default     = "amzn"
+
 }
+
+
 
 
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
   default     = { 
-  
 
   }
+
+
+
 }
 
 variable "sg" { 
  type   = list(string)
  default = [""]
 
+validation { 
+
+condition = ( var.sg != ""   || 
+              can(regex("^sg-", var.sg))
+
+
+)
+
+
+
+error_message = "Sg not null or not initial with sg-."
+
+}
 
 }
 
@@ -86,10 +157,14 @@ variable "playbook_link" {
  type   = string
  default = ""
 
+
+
 }
 
 variable "token_bitly" { 
  type   = string
  default = ""
+
+
 
 }
