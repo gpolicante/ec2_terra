@@ -18,6 +18,7 @@ resource "aws_instance" "infra" {
 
   )
  
+ 
  user_data = (data.template_file.init.rendered)
 
  vpc_security_group_ids =  var.sg

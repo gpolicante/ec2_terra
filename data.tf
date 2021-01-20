@@ -25,7 +25,7 @@ depends_on = [local.getimage]
 
 data "template_file" "init" {
   
-  template = "${file("${path.module}/init.tpl")}"
+  template =  var.playbook_link == ""  "${file("${path.module}/init.tpl")}" : "${file("${path.module}/init-playbook.tpl")}"
   vars = { 
       
       install_debian = "${var.install_debian}"
