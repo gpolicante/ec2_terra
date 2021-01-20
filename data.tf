@@ -15,7 +15,7 @@ filter {
 
 filter { 
     name = "name"
-    values =  var.ostype != "" ?  ["${format("%s*", var.ostype)}"] : ["amzn"]
+    values =  var.ostype != "" ?  ["${format("%s*", var.ostype)}"] : ["${format("%s*", var.imagedefault)}"] 
 
 }
 }
