@@ -1,5 +1,5 @@
 locals { 
 
-getimage = can(regex("^Ubuntu", var.ami)) 
+getimage = can(regex("^Ubuntu", var.ostype)) 
 
 }
