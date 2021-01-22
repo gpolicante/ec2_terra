@@ -18,7 +18,7 @@ filter {
     values =  var.ostype != "" ?  ["${format("%s*", var.ostype)}"] : ["${format("%s*", var.imagedefault)}"]  
 
 }
-depends_on = [local.getimage]
+depends_on = [var.ostype]
 }
 
 
