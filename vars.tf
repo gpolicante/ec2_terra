@@ -8,6 +8,12 @@ variable "amiid" {
 
 }
 
+variable "imagedefault" { 
+ type   = string
+ default = "Ubuntu"
+
+}
+
 variable "ostype" { 
  type   = string
  default = ""
