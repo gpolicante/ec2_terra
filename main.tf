@@ -3,7 +3,7 @@
 
 resource "aws_instance" "infra" {
   count = length(var.name)
-  ami           =     (can(regex("^ami-", var.ami)) ? var.ami  : data.aws_ami.std_ami.id )
+  ami           =     (var.amiid != "" ? var.amiid  : data.aws_ami.std_ami.id )
 
   instance_type = var.instancetype
   subnet_id = var.subnet[count.index]
