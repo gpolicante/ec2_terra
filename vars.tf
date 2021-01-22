@@ -2,23 +2,15 @@
 #       experiments = [variable_validation]
 #     }
 
-variable "ami" { 
+variable "amiid" { 
  type   = string
  default = ""
 
-validation { 
-
-  condition = ( can(regex("^ami-", var.ami)) || 
-  var.ami == "Ubuntu"  || 
-  var.ami == "amzn" || 
-  var.ami == "Windows" || 
-  var.ami == "Suse" 
-  )
-              
-  error_message = "*************The ami id is not valild pass ami-xxxx or \n SO name to list = Ubuntu, amzn, Windows, Suse************."
 }
 
-
+variable "ostype" { 
+ type   = string
+ default = ""
 
 }
 
