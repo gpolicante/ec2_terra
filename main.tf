@@ -25,6 +25,14 @@ resource "aws_instance" "infra" {
 
  root_block_device {
     volume_size = var.size 
+    tags       = merge(
+ var.tags, 
+  { 
+      provider = "terraform"
+      Name = var.name[count.index]
+  }
+
+  )
 
     }
 
